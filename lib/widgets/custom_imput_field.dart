@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -8,6 +10,8 @@ class CustomInputField extends StatelessWidget {
   final String? labelText;
   final String? helperText;
   final IconData? suffixIcon;
+  final TextInputType keyboardType;//validaciones
+  final bool obscureText;
   //
   const CustomInputField(
       {
@@ -16,12 +20,16 @@ class CustomInputField extends StatelessWidget {
         this.labelText,
         this.helperText,
         this.suffixIcon,
+        required this.keyboardType,
+        this.obscureText=false//si no se envía sera false por defecto
       }
       ) : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        keyboardType: keyboardType,
+        obscureText: obscureText,
         autofocus: true,
         initialValue: "",
         //primera letra de cada palabra en mayúsculas
