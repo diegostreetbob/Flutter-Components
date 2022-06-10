@@ -33,23 +33,23 @@ class  InputsScreen extends StatelessWidget {
                 key: myFormKey,
                 child: Column(
                 children: [
-                  const CustomInputField(hintText: "Nombre",suffixIcon: Icons.login,keyboardType: TextInputType.text),
-                  const SizedBox(height: 10),
-                  const CustomInputField(hintText: "Apellidos",suffixIcon: Icons.login,keyboardType: TextInputType.text),
-                  const SizedBox(height: 10),
-                  const CustomInputField(hintText: "Email",suffixIcon: Icons.mail_outline,keyboardType: TextInputType.emailAddress),
-                  const SizedBox(height: 10),
-                  const CustomInputField(hintText: "Password",suffixIcon: Icons.security_rounded,keyboardType: TextInputType.visiblePassword,obscureText: true),
-                  const SizedBox(height: 10),
+                  CustomInputField(hintText: "Nombre",suffixIcon: Icons.login,keyboardType: TextInputType.text,formProperty:"nombre" ,formValues: formValues ),
+                  const SizedBox(height: 7),
+                  CustomInputField(hintText: "Apellidos",suffixIcon: Icons.login,keyboardType: TextInputType.text,formProperty:"apellidos" ,formValues: formValues),
+                  const SizedBox(height: 7),
+                  CustomInputField(hintText: "Email",suffixIcon: Icons.mail_outline,keyboardType: TextInputType.emailAddress,formProperty:"email" ,formValues: formValues),
+                  const SizedBox(height: 7),
+                  CustomInputField(hintText: "Password",suffixIcon: Icons.security_rounded,keyboardType: TextInputType.visiblePassword,obscureText: true,formProperty:"password" ,formValues: formValues),
+                  const SizedBox(height: 7),
                   ElevatedButton(
                       child: const Text("Guardar"),
                       onPressed: (){
                         //para minimizar el teclado cada vez que damos a guardar
                         FocusScope.of(context).requestFocus(FocusNode());
-                        //aseguro no null
-                        if(myFormKey.currentState != null) {
-                          //
-                          if(!myFormKey.currentState!.validate()){
+                        if(myFormKey.currentState != null) {     //aseguro no null
+                          if(myFormKey.currentState!.validate()){//si no hay errores
+                            print(formValues);
+                          }else{                                 //si hay errores
                             print("formulario no válido");
                           }
                         }

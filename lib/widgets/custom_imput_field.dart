@@ -12,8 +12,10 @@ class CustomInputField extends StatelessWidget {
   final IconData? suffixIcon;
   final TextInputType keyboardType;//validaciones
   final bool obscureText;
+  final String formProperty;
+  final Map<String,String> formValues;
   //
-  const CustomInputField(
+  CustomInputField(
       {
         Key? key,
         this.hintText,
@@ -21,7 +23,9 @@ class CustomInputField extends StatelessWidget {
         this.helperText,
         this.suffixIcon,
         required this.keyboardType,
-        this.obscureText=false//si no se envía sera false por defecto
+        this.obscureText=false,//si no se envía sera false por defecto
+        required this.formProperty,
+        required this.formValues
       }
       ) : super(key: key);
   //
@@ -34,16 +38,15 @@ class CustomInputField extends StatelessWidget {
         initialValue: "",
         //primera letra de cada palabra en mayúsculas
         textCapitalization: TextCapitalization.words,
-        onChanged: (value) { //imprime lo escrito
-          print("value: $value");
+        onChanged: (value) {
+          formValues[formProperty] = value;
         },
         //validación
         autovalidateMode: AutovalidateMode.onUserInteraction,
+        //todo investigar validaciones con regex
         validator: (value) {
-          if (value != null) {
-            return value.length < 4 ? "Mínimo escribir 4 caracteres" : "";
-          } else {
-            return "Este campo es requerido";
+           if (value != null) {
+            if (value.isEmpty) return 'Please enter some text';
           }
         },
         decoration: InputDecoration(
