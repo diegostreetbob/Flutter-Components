@@ -30,7 +30,32 @@ class AppTheme {
               shape: const StadiumBorder(),
               elevation: 0
           )
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        floatingLabelStyle: TextStyle(color: _primaryLight),
+        //se aplica a todos los imputs que no tengan el focus y estén habilitados
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: Colors.blueGrey),
+          ),
+        //se aplica a los imputs habilitados
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blueGrey),
+          borderRadius: BorderRadius.all(Radius.circular(10))
+        ),
+        //se aplica a los imputs que tienen el foco
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: _primaryLight),
+          borderRadius: BorderRadius.all(Radius.circular(20))
+        ),
+        //se aplica a los imputs que han arrojado algún error.
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blueGrey),
+          borderRadius: BorderRadius.all(Radius.circular(10))
+        )
+
       )
+
   );
   //Thema dark personalizado
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
