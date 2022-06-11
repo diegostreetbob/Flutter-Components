@@ -13,7 +13,7 @@ class CustomInputField extends StatelessWidget {
   final String formProperty;
   final Map<String,String> formValues;
   //
-  CustomInputField(
+  const CustomInputField(
       {
         Key? key,
         this.hintText,

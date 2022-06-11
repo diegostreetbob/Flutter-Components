@@ -42,6 +42,7 @@ class  InputsScreen extends StatelessWidget {
                   CustomInputField(hintText: "Password",suffixIcon: Icons.security_rounded,keyboardType: TextInputType.visiblePassword,obscureText: true,formProperty:"password" ,formValues: formValues),
                   const SizedBox(height: 7),
                   DropdownButtonFormField(
+                      value:"Basic",
                       items: const [
                         DropdownMenuItem(
                             value:"Basic",
@@ -58,7 +59,7 @@ class  InputsScreen extends StatelessWidget {
                       ],
                       onChanged: (value){
                         //si value!=null guardamos el role si no asignamos el rol basico
-                        value!=null?formValues["role"]=value.toString():"basic";
+                        value!=null?formValues["role"]=value.toString():"Basic";
                       }/*,
                     decoration:InputDecoration(
                         focusedBorder: OutlineInputBorder(
