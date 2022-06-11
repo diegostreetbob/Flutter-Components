@@ -15,7 +15,8 @@ class AppRoutes{
     MenuOption(route: "/alertscreen", name: "Alert Screen", screen: const AlertScreen(), icon: Icons.add_alert),
     MenuOption(route: "/avatarscreen", name: "Avatar Screen", screen: const AvatarScreen(), icon: Icons.supervised_user_circle_rounded),
     MenuOption(route: "/animatedscreen", name: "Animated Screen", screen: const AnimatedScreen(), icon: Icons.play_circle_outline_outlined),
-    MenuOption(route: "/inputsscreens", name: "Text Inputs", screen: const InputsScreen(), icon: Icons.input_rounded)
+    MenuOption(route: "/inputsscreens", name: "Inputs Screen", screen: const InputsScreen(), icon: Icons.input_rounded),
+    MenuOption(route: "/sliderscreen", name: "Slider & Checks", screen: const SliderScreen(), icon: Icons.door_sliding)
   ];
   //Lo que se añada en menú options se optione con esta operación static
   static Map<String, Widget Function(BuildContext)> getAppRoutes(){

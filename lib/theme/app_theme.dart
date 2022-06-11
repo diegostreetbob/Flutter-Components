@@ -6,6 +6,9 @@ class AppTheme {
   //colores primarios para cada tema, como atributos privados
   static const Color _primaryLight = Colors.lightBlueAccent;
   static const Color _primaryDark = Colors.white70;
+  //getters
+  static Color get primaryLight => _primaryLight;
+  static Color get primaryDark => _primaryDark;
   //Thema light personalizado
   static final ThemeData lightTheme = ThemeData.light().copyWith(
       primaryColor: _primaryLight, //color primario
