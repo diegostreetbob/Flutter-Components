@@ -17,7 +17,7 @@ class  InputsScreen extends StatelessWidget {
         "apellidos":"Lopez",
         "email":"mail@mail.com",
         "password":"123",
-        "roles":"Admin"
+        "role":"Admin"
       };
       //
       return Scaffold(
@@ -41,6 +41,34 @@ class  InputsScreen extends StatelessWidget {
                   const SizedBox(height: 7),
                   CustomInputField(hintText: "Password",suffixIcon: Icons.security_rounded,keyboardType: TextInputType.visiblePassword,obscureText: true,formProperty:"password" ,formValues: formValues),
                   const SizedBox(height: 7),
+                  DropdownButtonFormField(
+                      items: const [
+                        DropdownMenuItem(
+                            value:"Basic",
+                            child: Text("Basic")
+                        ),
+                        DropdownMenuItem(
+                            value:"Admin",
+                            child: Text("Admin")
+                        ),
+                        DropdownMenuItem(
+                            value:"Super Admin",
+                            child: Text("Super Admin")
+                        )
+                      ],
+                      onChanged: (value){
+                        //si value!=null guardamos el role si no asignamos el rol basico
+                        value!=null?formValues["role"]=value.toString():"basic";
+                      }/*,
+                    decoration:InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                            borderRadius: BorderRadius.all(Radius.circular(20))
+                        ),
+                      isDense: true,
+                    ) */
+                  ),
+                  ///
                   ElevatedButton(
                       child: const Text("Guardar"),
                       onPressed: (){

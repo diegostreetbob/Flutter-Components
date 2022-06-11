@@ -53,9 +53,7 @@ class AppTheme {
           borderSide: BorderSide(color: Colors.blueGrey),
           borderRadius: BorderRadius.all(Radius.circular(10))
         )
-
       )
-
   );
   //Thema dark personalizado
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
