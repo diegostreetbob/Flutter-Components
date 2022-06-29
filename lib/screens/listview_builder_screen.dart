@@ -11,7 +11,7 @@ class ListViewBuilderScreen extends StatefulWidget {
 
 class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
   //atributos
-  final List<int> imagesIds = [1,2,3,4,5];
+  final List<int> imagesIds = [1,2,3,4,5,6,7,8,9,10];
   final ScrollController scrollController = ScrollController();
   bool isLoading = false;
   //creamos listeners
@@ -62,6 +62,15 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
     setState((){});//redibujamos
   }
 
+  Future<void> onRefresh() async {
+    await Future.delayed( const Duration( seconds: 2 ));
+    final lastId = imagesIds.last;
+    imagesIds.clear();
+    imagesIds.add(lastId + 1);
+    loadItems();
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -74,18 +83,21 @@ class _ListViewBuilderScreenState extends State<ListViewBuilderScreen> {
           removeBottom: true,//quita espacion en blanco inferior
           child: Stack(
             children: [
-              ListView.builder(
-                  controller: scrollController,
-                  itemCount: imagesIds.length,
-                  itemBuilder:(BuildContext context, int index){
-                    return FadeInImage(
-                        width: double.infinity, //evita saltos por reajuste de tamaño al cargar
-                        height: 300, //evita saltos por reajuste de tamaño al cargar
-                        fit: BoxFit.cover,//quita franja blanca entre imágenes
-                        placeholder: const AssetImage("resources/images/jar-loading.gif"),
-                        image: NetworkImage('https://picsum.photos/500/300?image=${imagesIds[index]}')
-                        );
-                  },
+              RefreshIndicator(
+                onRefresh: onRefresh,
+                child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: imagesIds.length,
+                    itemBuilder:(BuildContext context, int index){
+                      return FadeInImage(
+                          width: double.infinity, //evita saltos por reajuste de tamaño al cargar
+                          height: 300, //evita saltos por reajuste de tamaño al cargar
+                          fit: BoxFit.cover,//quita franja blanca entre imágenes
+                          placeholder: const AssetImage("resources/images/jar-loading.gif"),
+                          image: NetworkImage('https://picsum.photos/500/300?image=${imagesIds[index]}')
+                          );
+                    },
+                ),
               ),
               //para centrar elemento dentro del Stack
               if(isLoading)//solo lo muestra si está cargando
